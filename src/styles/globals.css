@@ -1,0 +1,328 @@
+@import "tailwindcss";
+
+@theme {
+  --color-space-navy: #171629;
+  --color-mars-burgundy: #713D43;
+  --color-mars-rust: #A95743;
+  --color-dusty-rose: #B66F70;
+  --color-lavender: #A88DAF;
+  --color-astronaut-purple: #8F789D;
+  --color-rust-orange: #C85A32;
+  --color-warm-cream: #F6EBDD;
+  --color-parchment-light: #FFF8EE;
+  --color-parchment-base: #F5E8D0;
+  --color-parchment-dark: #E2CCA8;
+  --color-soft-gold: #E7B875;
+  --color-antique-gold: #C89658;
+  --color-ink-dark: #2A1810;
+
+  --font-cairo: "Cairo", system-ui, -apple-system, sans-serif;
+  --font-amiri: "Amiri", serif;
+  --font-cinzel: "Cinzel", Georgia, serif;
+  --font-outfit: "Outfit", system-ui, sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: "Cairo", system-ui, -apple-system, sans-serif;
+    -webkit-text-size-adjust: 100%;
+    background-color: #3D1E1A;
+  }
+
+  body {
+    background-color: #3D1E1A;
+    color: #2A1810;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+}
+
+/* ── Typography Utilities ─────────────────────────────────────────── */
+
+.font-cairo { font-family: "Cairo", system-ui, sans-serif; }
+.font-cinzel { font-family: "Cinzel", Georgia, serif; }
+.font-amiri { font-family: "Amiri", serif; }
+
+/* ── Authentic Illustrated Mars Parchment Cards ───────────────────── */
+
+.parchment-panel {
+  background: linear-gradient(145deg, #FFF9F0 0%, #F7EAD4 50%, #EBD8B8 100%);
+  color: #2A1810;
+  border: 2.5px solid #C89658;
+  box-shadow:
+    0 14px 40px -8px rgba(60, 20, 15, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset,
+    0 0 20px 0 rgba(231, 184, 117, 0.35);
+  border-radius: 1.5rem;
+  position: relative;
+}
+
+.parchment-panel::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px dashed rgba(169, 87, 67, 0.35);
+  border-radius: 1.25rem;
+  pointer-events: none;
+}
+
+.parchment-card-sm {
+  background: linear-gradient(135deg, rgba(255, 248, 238, 0.96) 0%, rgba(245, 232, 208, 0.94) 100%);
+  color: #2A1810;
+  border: 1.5px solid #C89658;
+  box-shadow: 0 8px 24px -4px rgba(60, 20, 15, 0.25);
+  border-radius: 1rem;
+}
+
+/* Deep Mars Glass Card for overlays and headers */
+.mars-glass-panel {
+  background: linear-gradient(135deg, rgba(75, 32, 38, 0.88) 0%, rgba(35, 22, 38, 0.92) 100%);
+  color: #F6EBDD;
+  border: 1.5px solid rgba(231, 184, 117, 0.45);
+  box-shadow: 0 16px 45px -10px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1.25rem;
+}
+
+/* ── Interactive Mars Exploration Buttons ─────────────────────────── */
+
+.mars-btn-primary {
+  background: linear-gradient(135deg, #C85A32 0%, #A93B28 50%, #71242A 100%);
+  color: #FFFDF9;
+  border: 2px solid #E7B875;
+  box-shadow:
+    0 8px 24px -4px rgba(169, 59, 40, 0.6),
+    0 0 16px rgba(231, 184, 117, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 1rem;
+  font-weight: 800;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mars-btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 12px 30px -4px rgba(169, 59, 40, 0.8),
+    0 0 25px rgba(231, 184, 117, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.mars-btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.mars-btn-secondary {
+  background: linear-gradient(135deg, rgba(255, 248, 238, 0.95) 0%, rgba(240, 224, 198, 0.92) 100%);
+  color: #713D43;
+  border: 2px solid #C89658;
+  box-shadow: 0 6px 18px -4px rgba(60, 20, 15, 0.25);
+  border-radius: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.mars-btn-secondary:hover {
+  background: #FFFDF9;
+  border-color: #A95743;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px -4px rgba(60, 20, 15, 0.35);
+}
+
+/* ── Hotspot Radar Pulse ──────────────────────────────────────────── */
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(231, 184, 117, 0.7);
+  }
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 18px rgba(231, 184, 117, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(231, 184, 117, 0);
+  }
+}
+
+.hotspot-pulse {
+  animation: radar-pulse 2.2s infinite ease-in-out;
+}
+
+/* ── Atmospheric Dust Float ───────────────────────────────────────── */
+
+@keyframes mars-dust-float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(25px, -30px) rotate(180deg);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(50px, -60px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.dust-drift {
+  animation: mars-dust-float 10s infinite linear;
+}
+
+/* ── Custom Scrollbar ─────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #2A1810;
+}
+::-webkit-scrollbar-thumb {
+  background: #C85A32;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E7B875;
+}
+
+::selection {
+  background: #C85A32;
+  color: #FFFDF9;
+}
+
+/* ── Dust Particle Animation ─────────────────────────────────────── */
+
+@keyframes dust-particle-float {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: var(--dust-opacity, 0.3);
+  }
+  25% {
+    transform: translate(15px, -20px) scale(1.2);
+  }
+  50% {
+    transform: translate(-10px, -45px) scale(0.9);
+    opacity: calc(var(--dust-opacity, 0.3) * 1.5);
+  }
+  75% {
+    transform: translate(20px, -65px) scale(1.1);
+  }
+  100% {
+    transform: translate(5px, -90px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.dust-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(231, 184, 117, 0.7) 0%, rgba(200, 150, 88, 0.3) 100%);
+  pointer-events: none;
+  animation: dust-particle-float var(--dust-duration, 8s) var(--dust-delay, 0s) infinite linear;
+  will-change: transform, opacity;
+}
+
+/* ── Storm Particle Rush ─────────────────────────────────────────── */
+
+@keyframes storm-particle-rush {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-60px, -30px) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-120px, 10px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.storm-particle {
+  animation-name: storm-particle-rush;
+}
+
+/* ── Scene Transition Glow ───────────────────────────────────────── */
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.scene-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Character Float ─────────────────────────────────────────────── */
+
+@keyframes character-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.character-float {
+  animation: character-float 4s ease-in-out infinite;
+}
+
+/* ── Stars Twinkle ───────────────────────────────────────────────── */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.star-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* ── Progress Bar Fill ───────────────────────────────────────────── */
+
+@keyframes progress-fill {
+  from { width: 0; }
+}
+
+.progress-fill-anim {
+  animation: progress-fill 0.8s ease-out forwards;
+}
+
+/* ── Fullscreen Button ───────────────────────────────────────────── */
+
+.fullscreen-btn {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 45;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background: rgba(255, 249, 240, 0.9);
+  border: 1.5px solid #C89658;
+  color: #713D43;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(60, 20, 15, 0.2);
+}
+
+.fullscreen-btn:hover {
+  background: #F5E8D0;
+  transform: translateY(-1px);
+}
